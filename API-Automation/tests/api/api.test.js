@@ -106,9 +106,9 @@ describe("Store API Testing", () => {
       if (response.status === 201) {
         productId = data.id;
         if (productId) await deleteProduct(productId);
-        throw new Error("Price should be integer type");
+        // throw new Error("Price should be integer type");
       }
-      expect(response.status).to.be.oneOf([400, 422]);
+      expect(response.status).to.be.oneOf([400, 422], "Price should be integer type");
     });
 
     it("Failed when a category does not exist", async () => {
