@@ -1,0 +1,24 @@
+{
+  "name": "api-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha tests/api --recursive --timeout 60000 --reporter spec",
+    "html-report-test": "mocha tests/api --recursive --reporter mocha-simple-html-reporter --reporter-options output=report.html --timeout 60000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "chai": "^6.2.2",
+    "exceljs": "^4.4.0",
+    "mocha": "^11.7.5",
+    "mocha-simple-html-reporter": "^2.0.0"
+  }
+}
