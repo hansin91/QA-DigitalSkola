@@ -157,7 +157,7 @@ describe("Store API Testing", () => {
 
     it("Product not found when invalid slug", async () => {
       const { response, data } = await getProductBySlug("handmade-fresh-table");
-      expect(response.status).to.be.within(400, 499);
+      expect(response.status).to.be.oneOf([400, 404]);
       expect(data).haveOwnProperty("message");
     });
 
@@ -171,7 +171,7 @@ describe("Store API Testing", () => {
       }
       slug = toTitleSlug(slug);
       const { response, data } = await getProductBySlug(slug);
-      expect(response.status).to.be.within(400, 404);
+      expect(response.status).to.be.oneOf([400, 404]);
       expect(data).haveOwnProperty("message");
     });
   });
