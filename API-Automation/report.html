@@ -556,10 +556,10 @@ body {
                     <li class="passes">passes: <em>6</em></li>
                     <li class="pending">pending: <em>0</em></li>
                     <li class="failures">failures: <em>2</em></li>
-                    <li class="duration">duration: <em>7.6s</em></li>
+                    <li class="duration">duration: <em>6.7s</em></li>
                 </ul>
             </div>
-            <ul id="report"><li class="suite"><h1>Store API Testing</h1><ul><li class="suite"><h1>Add new product</h1><ul><li class="test pass slow"><h2>Create a new product successfully<span class="duration">2587ms</span></h2><pre><code>async () =&#x3E; {
+            <ul id="report"><li class="suite"><h1>Store API Testing</h1><ul><li class="suite"><h1>Add new product</h1><ul><li class="test pass slow"><h2>Create a new product successfully<span class="duration">2365ms</span></h2><pre><code>async () =&#x3E; {
       const payload = {
         title: &#x22;Gouwn with Red velvet&#x22;,
         price: 350,
@@ -582,7 +582,7 @@ body {
       expect(data.images).to.deep.equal(payload.images);
       expect(data.category).to.be.an(&#x22;object&#x22;);
       expect(data.category.id).to.equal(payload.categoryId);
-    }</code></pre></li><li class="test pass slow"><h2>Failed when a required file is empty (e.g., title)<span class="duration">1281ms</span></h2><pre><code>async () =&#x3E; {
+    }</code></pre></li><li class="test pass slow"><h2>Failed when a required file is empty (e.g., title)<span class="duration">439ms</span></h2><pre><code>async () =&#x3E; {
       const payload = {
         title: &#x22;&#x22;,
         price: 350,
@@ -626,7 +626,7 @@ body {
       expect(response.status).to.be.oneOf([400, 422]);
     }</code></pre><pre class="error">Error: Price should be integer type
     at Context.&#x3C;anonymous&#x3E; (file:///Users/hansinsusatya/Desktop/QA-DigitalSkola/API-Automation/tests/api/api.test.js:109:15)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></li><li class="test pass slow"><h2>Failed when a category does not exist<span class="duration">461ms</span></h2><pre><code>async () =&#x3E; {
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></li><li class="test pass slow"><h2>Failed when a category does not exist<span class="duration">819ms</span></h2><pre><code>async () =&#x3E; {
       const payload = {
         title: &#x22;Red Hoody&#x22;,
         price: 65,
@@ -636,7 +636,7 @@ body {
       };
       const { response } = await createProduct(payload);
       expect(response.status).to.be.equal(400);
-    }</code></pre></li></ul></li><li class="suite"><h1>Get product by slug</h1><ul><li class="test pass slow"><h2>Load a product detail by slug<span class="duration">332ms</span></h2><pre><code>async () =&#x3E; {
+    }</code></pre></li></ul></li><li class="suite"><h1>Get product by slug</h1><ul><li class="test pass slow"><h2>Load a product detail by slug<span class="duration">329ms</span></h2><pre><code>async () =&#x3E; {
       const { response, data } = await getProductBySlug(slug);
       expect(response.status).to.equal(200);
       const ajv = new Ajv();
@@ -644,11 +644,11 @@ body {
       const schemaValidation = validate(data);
       expect(schemaValidation).to.be.true;
       expect(data.slug).to.equal(slug);
-    }</code></pre></li><li class="test pass slow"><h2>Product not found when invalid slug<span class="duration">300ms</span></h2><pre><code>async () =&#x3E; {
+    }</code></pre></li><li class="test pass slow"><h2>Product not found when invalid slug<span class="duration">392ms</span></h2><pre><code>async () =&#x3E; {
       const { response, data } = await getProductBySlug(&#x22;handmade-fresh-table&#x22;);
       expect(response.status).to.be.within(400, 499);
       expect(data).haveOwnProperty(&#x22;message&#x22;);
-    }</code></pre></li><li class="test pass slow"><h2>Case sensitivity of slug<span class="duration">309ms</span></h2><pre><code>async () =&#x3E; {
+    }</code></pre></li><li class="test pass slow"><h2>Case sensitivity of slug<span class="duration">308ms</span></h2><pre><code>async () =&#x3E; {
       function toTitleSlug(slug) {
         return slug
           .split(&#x22;-&#x22;)
@@ -658,7 +658,7 @@ body {
       }
       slug = toTitleSlug(slug);
       const { response, data } = await getProductBySlug(slug);
-      expect(response.status).to.satisfy((s) =&#x3E; s === 200 || (s &#x3E;= 400 &#x26;&#x26; s &#x3C;= 499));
+      expect(response.status).to.be.within(400, 404);
       expect(data).haveOwnProperty(&#x22;message&#x22;);
     }</code></pre></li></ul></li></ul></li></ul>
         </div>

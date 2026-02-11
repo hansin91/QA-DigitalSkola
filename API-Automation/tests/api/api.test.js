@@ -171,7 +171,7 @@ describe("Store API Testing", () => {
       }
       slug = toTitleSlug(slug);
       const { response, data } = await getProductBySlug(slug);
-      expect(response.status).to.satisfy((s) => s === 200 || (s >= 400 && s <= 499));
+      expect(response.status).to.be.within(400, 404);
       expect(data).haveOwnProperty("message");
     });
   });
